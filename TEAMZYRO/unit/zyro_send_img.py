@@ -19,8 +19,8 @@ RARITY_WEIGHTS = {
     "🟡 Legendary": (12, True),             # Rare but obtainable
     "💮 Mythic": (8, True),   # Very rare
     "⚜️ Devine": (6, True),     # Extremely rare
-    "⚡️ Crossverse": (4, True) # Ultra-rare
-    "📺 Animation" : (1.2, True),
+    "⚡️ Crossverse": (4, True), # Ultra-rare
+    "✨ Cataphract" : (1.2, True),
     "🪞 Supreme" : (0.5, True),
    # "💞 Valentine": (2, False),         # Special Valentine's rarity
    # "🎃 Halloween": (2, False),        # Halloween themed rarity (DISABLED)
