@@ -90,7 +90,7 @@ async def display_harem(client, message, user_id, page, filter_rarity, is_initia
         keyboard = [
             [
                 InlineKeyboardButton("Collection", switch_inline_query_current_chat=f"collection.{user_id}"),
-                InlineKeyboardButton("Animation Versia 🎥", switch_inline_query_current_chat=f"collection.{user_id}.AMV")
+                InlineKeyboardButton("💌 AMV", switch_inline_query_current_chat=f"collection.{user_id}.AMV")
             ]
         ]
 
@@ -236,6 +236,3 @@ async def set_rarity_callback(client, callback_query):
         await callback_query.answer(f"Rarity filter set to {filter_rarity if filter_rarity else 'All'}", show_alert=True)
     except Exception as e:
         print(f"Error in set_rarity callback: {e}")
-
-
-
