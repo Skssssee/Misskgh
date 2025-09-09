@@ -14,7 +14,7 @@ rarity_map = {
     13: "🍃 echhi",
     14: "🌧️ Rainy Edition",
     15: "🎍 Festival",
-    "📺 Animation": "📺"
+    16: "📺 Animation"
 }
 
 RARITY_NAMES = [
@@ -33,7 +33,7 @@ RARITY_NAMES = [
     "🍃 echhi",
     "🌧️ Rainy Edition",
     "🎍 Festival",
-    "📺 Animation": "📺"
+    "📺 Animation"
     
 ]
 
