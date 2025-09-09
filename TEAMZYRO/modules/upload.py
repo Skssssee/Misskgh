@@ -19,7 +19,7 @@ rarity_map = {
  4: "💮 Mythic",   
  5: "⚜️ Devine",     
  6: "⚡️ Crossverse",
- 7: "📺 Animation" ,
+ 7: "✨ Cataphract" ,
  8: "🪞 Supreme"
     
 }
