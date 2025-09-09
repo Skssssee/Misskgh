@@ -25,7 +25,8 @@ RARITY_WEIGHTS = {
     "❄️ Winter": (1.5, False),          # Winter themed rarity
     "🏖 Summer": (1.2, False),          # Summer-themed rarity
     "🎗 Royal": (0.5, False),           # Royal rarity (Bid only)
-    "💸 Luxury Edition": (0.5, False)   # Luxury Edition (Shop only)
+    "💸 Luxury Edition": (0.5, False),
+    "📺 Legendary" : (41, True)# Luxury Edition (Shop only)
 }
 
 async def send_image(update: Update, context: CallbackContext) -> None:
