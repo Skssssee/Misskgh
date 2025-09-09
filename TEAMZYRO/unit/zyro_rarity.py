@@ -18,14 +18,14 @@ rarity_map = {
 }
 
 RARITY_NAMES = [
-  "🟣 Common" :"🟣",              
-  "🟠 Rare" : "🟠",          
-  "🟡 Legendary": "🟡",   
-  "💮 Mythic": "💮",   
-  "⚜️ Devine": "⚜️",     
-  "⚡️ Crossverse": "⚡️",
-  "✨ Cataphract": "✨ ",
-  "🪞 Supreme": "🪞",
+  "🟣 Common",              
+  "🟠 Rare",        
+  "🟡 Legendary",   
+  "💮 Mythic",   
+  "⚜️ Devine",     
+  "⚡️ Crossverse",
+  "✨ Cataphract",
+  "🪞 Supreme",
   #  "❄️ Winter",
   #$  "🏖 Summer",
    # "🎗 Royal",
