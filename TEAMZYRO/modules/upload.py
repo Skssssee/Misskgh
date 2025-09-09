@@ -28,7 +28,7 @@ rarity_map = {
     13: "🍃 echhi",
     14: "🌧️ Rainy Edition",
     15: "🎍 Festival",
-    16: "📺 Legendary"
+    16: "📺 upload"
 }
 """
 
