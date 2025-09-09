@@ -13,7 +13,8 @@ rarity_map = {
     12: "💸 Luxury Edition",
     13: "🍃 echhi",
     14: "🌧️ Rainy Edition",
-    15: "🎍 Festival"
+    15: "🎍 Festival",
+    "📺 Animation": "📺"
 }
 
 RARITY_NAMES = [
@@ -31,7 +32,9 @@ RARITY_NAMES = [
     "💸 Luxury Edition",
     "🍃 echhi",
     "🌧️ Rainy Edition",
-    "🎍 Festival"
+    "🎍 Festival",
+    "📺 Animation": "📺"
+    
 ]
 
 rarity_map2 = {
@@ -49,7 +52,8 @@ rarity_map2 = {
     "💸 Luxury Edition": "💸",
     "🍃 echhi": "🍃",
     "🌧️ Rainy Edition": "🌧️",
-    "🎍 Festival": "🎍"
+    "🎍 Festival": "🎍",
+    "📺 Animation": "📺"
 }
 
 
