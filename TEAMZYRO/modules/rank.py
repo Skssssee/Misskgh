@@ -6,7 +6,7 @@ import html
 from TEAMZYRO import app as Client
 from TEAMZYRO import user_collection, top_global_groups_collection
 
-PHOTO_URL = ["https://files.catbox.moe/9j8e6b.jpg"]  
+PHOTO_URL = ["https://files.catbox.moe/68jx8u.jpg"]  
 
 @Client.on_message(filters.command("rank"))
 async def rank(client, message):
