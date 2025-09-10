@@ -6,9 +6,9 @@ from TEAMZYRO import ZYRO as bot, user_collection
 
 # Bonus amounts
 DAILY_COINS = 100
-WEEKLY_COINS = 1500   # weekly bonus
+WEEKLY_COINS = 1500
 
-# /bonus command handler
+# /bonus command
 @bot.on_message(filters.command("bonus"))
 async def bonus_menu(_, message: t.Message):
     keyboard = InlineKeyboardMarkup(
@@ -18,61 +18,47 @@ async def bonus_menu(_, message: t.Message):
             [InlineKeyboardButton("❌ Close", callback_data="close_bonus")]
         ]
     )
-    await message.reply_text(
-        "✨ ʙᴏɴᴜꜱ ᴍᴇɴᴜ ✨\n\nChoose one of the options below:",
-        reply_markup=keyboard
-    )
+    await message.reply_text("✨ ʙᴏɴᴜꜱ ᴍᴇɴᴜ ✨\n\nChoose one of the options below:", reply_markup=keyboard)
 
-# Callback handler
+# Callback
 @bot.on_callback_query()
 async def bonus_handler(_, query: t.CallbackQuery):
     user_id = query.from_user.id
-
-    # Ensure user exists (always integer coins)
     user = await user_collection.find_one({"id": user_id})
+
     if not user:
         user = {
             "id": user_id,
-            "coins": 0,
+            "balance": 0,
             "last_daily_claim": None,
             "last_weekly_claim": None,
         }
         await user_collection.insert_one(user)
 
-    # Re-fetch fresh user data
-    user = await user_collection.find_one({"id": user_id})
-    coins = int(user.get("coins", 0))
-
-    # Daily claim
+    # DAILY
     if query.data == "daily_claim":
         last_daily = user.get("last_daily_claim")
         if last_daily and (datetime.utcnow() - last_daily) < timedelta(days=1):
             remaining = timedelta(days=1) - (datetime.utcnow() - last_daily)
             hours, remainder = divmod(int(remaining.total_seconds()), 3600)
             minutes, seconds = divmod(remainder, 60)
-            return await query.answer(
-                f"⏳ Already claimed! Next in {hours}h {minutes}m {seconds}s",
-                show_alert=True
-            )
+            return await query.answer(f"⏳ Already claimed! Next in {hours}h {minutes}m {seconds}s", show_alert=True)
 
-        # Update using $inc (safe increment with integer)
+        # increment balance like Mines
         await user_collection.update_one(
             {"id": user_id},
-            {
-                "$inc": {"coins": int(DAILY_COINS)},
-                "$set": {"last_daily_claim": datetime.utcnow()}
-            }
+            {"$inc": {"balance": DAILY_COINS}, "$set": {"last_daily_claim": datetime.utcnow()}},
+            upsert=True
         )
-
-        # Fetch updated balance
         updated = await user_collection.find_one({"id": user_id})
-        balance = int(updated.get("coins", 0))
+        balance = int(updated.get("balance", 0))
+
         return await query.answer(
             f"✅ Daily Bonus claimed!\n💰 +{DAILY_COINS} coins\n\n🔹 Balance: {balance}",
             show_alert=True
         )
 
-    # Weekly claim
+    # WEEKLY
     elif query.data == "weekly_claim":
         last_weekly = user.get("last_weekly_claim")
         if last_weekly and (datetime.utcnow() - last_weekly) < timedelta(weeks=1):
@@ -80,29 +66,26 @@ async def bonus_handler(_, query: t.CallbackQuery):
             days, remainder = divmod(int(remaining.total_seconds()), 86400)
             hours, remainder = divmod(remainder, 3600)
             minutes, seconds = divmod(remainder, 60)
-            return await query.answer(
-                f"⏳ Already claimed! Next in {days}d {hours}h {minutes}m",
-                show_alert=True
-            )
+            return await query.answer(f"⏳ Already claimed! Next in {days}d {hours}h {minutes}m", show_alert=True)
 
-        # Update using $inc (safe increment with integer)
+        # increment balance like Mines
         await user_collection.update_one(
             {"id": user_id},
-            {
-                "$inc": {"coins": int(WEEKLY_COINS)},
-                "$set": {"last_weekly_claim": datetime.utcnow()}
-            }
+            {"$inc": {"balance": WEEKLY_COINS}, "$set": {"last_weekly_claim": datetime.utcnow()}},
+            upsert=True
         )
-
-        # Fetch updated balance
         updated = await user_collection.find_one({"id": user_id})
-        balance = int(updated.get("coins", 0))
+        balance = int(updated.get("balance", 0))
+
         return await query.answer(
             f"✅ Weekly Bonus claimed!\n💰 +{WEEKLY_COINS} coins\n\n🔹 Balance: {balance}",
             show_alert=True
         )
 
-    # Close button
+    # CLOSE
     elif query.data == "close_bonus":
-        await query.message.delete()
+        try:
+            await query.message.delete()
+        except:
+            pass
         return
