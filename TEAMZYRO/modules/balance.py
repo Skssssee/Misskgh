@@ -13,8 +13,8 @@ async def get_balance(user_id):
 
 # --- Balance Images (Spoiler) ---
 BALANCE_IMAGES = [
-    https://files.catbox.moe/z44czu.jpg,
-    https://files.catbox.moe/uvvkah.jpg
+    "https://files.catbox.moe/0lqru9.jpg",
+    "https://files.catbox.moe/uvvkah.jpg"
 ]
 
 # ✅ BALANCE COMMAND
@@ -242,6 +242,7 @@ async def kill_handler(client, message):
         print(f"Error in /kill command: {e}")
         await message.reply_text("An error occurred while processing the request. Please try again later.")
         
+
 
 
 
