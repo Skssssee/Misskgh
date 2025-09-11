@@ -1,11 +1,18 @@
-FROM python:latest
+FROM python:3.8.5-slim-buster
 
-RUN apt-get update -y && apt-get upgrade -y
+ENV PIP_NO_CACHE_DIR 1
 
-RUN pip3 install -U pip
+# Upgrade pip and setuptools
+RUN pip3 install --upgrade pip setuptools
 
+# Copy application code
 COPY . /app/
-WORKDIR /app/
-RUN pip3 install -U -r requirements.txt
 
-CMD python3 -m TEAMZYRO
+# Set working directory
+WORKDIR /app/
+
+# Install Python dependencies
+RUN pip3 install --no-cache-dir -U -r requirements.txt
+
+# Run the bot
+CMD ["python3", "-m", "TEAMZYRO"]
